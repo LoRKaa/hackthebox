@@ -86,101 +86,100 @@ Theme by GitBook
 <li>Realiza un escaneo con nmap</li>
 <li>Si detecta que existe un puerto 80 o 443 lanza un whatweb y un curl para extraer las cabeceras HTTP</li>
 </ul>
-<pre><code class="language-bash">#!/bin/bash
-# HTB LoRKa Script
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1"># HTB LoRKa Script</span>
 
-command -v nmap &gt;/dev/null 2&gt;&amp;1 || { echo -e &gt;&amp;2 &quot;[\e[1;31m!\e[0m] You need \e[1;32mnmap\e[0m , please install it.&quot;; exit 1; }
-command -v whatweb &gt;/dev/null 2&gt;&amp;1 || { echo -e &gt;&amp;2 &quot;[\e[1;31m!\e[0m] You need \e[1;32mwhatweb\e[0m , please install it.&quot;; exit 1; }
-command -v curl &gt;/dev/null 2&gt;&amp;1 || { echo -e &gt;&amp;2 &quot;[\e[1;31m!\e[0m] You need \e[1;32mcurl\e[0m , please install it.&quot;; exit 1; }
+<span class="nb">command</span> -v nmap &gt;/dev/null <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="o">||</span> <span class="o">{</span> <span class="nb">echo</span> -e &gt;<span class="p">&amp;</span><span class="m">2</span> <span class="s2">&quot;[\e[1;31m!\e[0m] You need \e[1;32mnmap\e[0m , please install it.&quot;</span><span class="p">;</span> <span class="nb">exit</span> <span class="m">1</span><span class="p">;</span> <span class="o">}</span>
+<span class="nb">command</span> -v whatweb &gt;/dev/null <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="o">||</span> <span class="o">{</span> <span class="nb">echo</span> -e &gt;<span class="p">&amp;</span><span class="m">2</span> <span class="s2">&quot;[\e[1;31m!\e[0m] You need \e[1;32mwhatweb\e[0m , please install it.&quot;</span><span class="p">;</span> <span class="nb">exit</span> <span class="m">1</span><span class="p">;</span> <span class="o">}</span>
+<span class="nb">command</span> -v curl &gt;/dev/null <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="o">||</span> <span class="o">{</span> <span class="nb">echo</span> -e &gt;<span class="p">&amp;</span><span class="m">2</span> <span class="s2">&quot;[\e[1;31m!\e[0m] You need \e[1;32mcurl\e[0m , please install it.&quot;</span><span class="p">;</span> <span class="nb">exit</span> <span class="m">1</span><span class="p">;</span> <span class="o">}</span>
 
-if [ &quot;$#&quot; -ne &quot;2&quot; ] || [ &quot;$#&quot; -gt &quot;2&quot; ] ; then
-echo &quot;[+] Use: $(basename $0) machineNAME machineIP&quot;
-echo &quot;[+] Exp: $(basename $0) Armageddon 10.10.10.233&quot;
-exit -1
-fi
+<span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$#</span><span class="s2">&quot;</span> -ne <span class="s2">&quot;2&quot;</span> <span class="o">]</span> <span class="o">||</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$#</span><span class="s2">&quot;</span> -gt <span class="s2">&quot;2&quot;</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
+<span class="nb">echo</span> <span class="s2">&quot;[+] Use: </span><span class="k">$(</span>basename <span class="nv">$0</span><span class="k">)</span><span class="s2"> machineNAME machineIP&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;[+] Exp: </span><span class="k">$(</span>basename <span class="nv">$0</span><span class="k">)</span><span class="s2"> Armageddon 10.10.10.233&quot;</span>
+<span class="nb">exit</span> -1
+<span class="k">fi</span>
 
-trap '/bin/rm -rf &quot;$TMPFILE&quot;' EXIT
+<span class="nb">trap</span> <span class="s1">&#39;/bin/rm -rf &quot;$TMPFILE&quot;&#39;</span> EXIT
 
-#Vars
-NAME=&quot;$1&quot;
-IP=&quot;$2&quot;
-TMPFILE=$(mktemp)
-FOLDER=&quot;/root/Machines/$NAME&quot;
-
-
-#Functions
-checkvpn(){
-ip -4 a show tun0 1&gt;/dev/null 2&gt;/dev/null
-if [ $? -ne 0 ];then
-printf '%s\n' &quot;[!] ERROR: la VPN no esta conectada :(&quot;
-exit -1
-fi
-}
-
-checkping(){
-timeout 0.3 ping -c1 $IP 1&gt;/dev/null 2&gt;/dev/null
-if [ $? -ne 0 ];then
-printf '%s\n' &quot;[!] ERROR: la ip $IP no contesta a ping :(&quot;
-exit -1
-fi
-}
-
-createfolder(){
-if [ -d &quot;$FOLDER&quot; ]; then
-printf '%s\n' &quot;[!] Cuidado! el directorio $FOLDER existe!&quot;
-exit 1
-fi
-mkdir -p $FOLDER
-}
+<span class="c1">#Vars</span>
+<span class="nv">NAME</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span>
+<span class="nv">IP</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$2</span><span class="s2">&quot;</span>
+<span class="nv">TMPFILE</span><span class="o">=</span><span class="k">$(</span>mktemp<span class="k">)</span>
+<span class="nv">FOLDER</span><span class="o">=</span><span class="s2">&quot;/root/Machines/</span><span class="nv">$NAME</span><span class="s2">&quot;</span>
 
 
-addhost(){
-local HOSTSFILE=&quot;/etc/hosts&quot;
-local HOSTNAME=&quot;$NAME.htb&quot;
-local IP=&quot;$IP&quot;
-local LINE=&quot;$IP\t$HOSTNAME&quot;
-if [ -n &quot;$(grep $HOSTNAME $HOSTSFILE)&quot; ]
-then
-printf '%s\n' &quot;[!] $HOSTNAME ya existe en $HOSTSFILE : $(grep $HOSTNAME $HOSTSFILE)&quot;
-else
-sh -c -e &quot;echo '$LINE' &gt;&gt; $HOSTSFILE&quot;;
-        if [ -n &quot;$(grep $HOSTNAME $HOSTSFILE)&quot; ]
-        then
+<span class="c1">#Functions</span>
+checkvpn<span class="o">(){</span>
+ip -4 a show tun0 <span class="m">1</span>&gt;/dev/null <span class="m">2</span>&gt;/dev/null
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> -ne <span class="m">0</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+<span class="nb">printf</span> <span class="s1">&#39;%s\n&#39;</span> <span class="s2">&quot;[!] ERROR: la VPN no esta conectada :(&quot;</span>
+<span class="nb">exit</span> -1
+<span class="k">fi</span>
+<span class="o">}</span>
+
+checkping<span class="o">(){</span>
+timeout <span class="m">0</span>.3 ping -c1 <span class="nv">$IP</span> <span class="m">1</span>&gt;/dev/null <span class="m">2</span>&gt;/dev/null
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> -ne <span class="m">0</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+<span class="nb">printf</span> <span class="s1">&#39;%s\n&#39;</span> <span class="s2">&quot;[!] ERROR: la ip </span><span class="nv">$IP</span><span class="s2"> no contesta a ping :(&quot;</span>
+<span class="nb">exit</span> -1
+<span class="k">fi</span>
+<span class="o">}</span>
+
+createfolder<span class="o">(){</span>
+<span class="k">if</span> <span class="o">[</span> -d <span class="s2">&quot;</span><span class="nv">$FOLDER</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+<span class="nb">printf</span> <span class="s1">&#39;%s\n&#39;</span> <span class="s2">&quot;[!] Cuidado! el directorio </span><span class="nv">$FOLDER</span><span class="s2"> existe!&quot;</span>
+<span class="nb">exit</span> <span class="m">1</span>
+<span class="k">fi</span>
+mkdir -p <span class="nv">$FOLDER</span>
+<span class="o">}</span>
+
+
+addhost<span class="o">(){</span>
+<span class="nb">local</span> <span class="nv">HOSTSFILE</span><span class="o">=</span><span class="s2">&quot;/etc/hosts&quot;</span>
+<span class="nb">local</span> <span class="nv">HOSTNAME</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$NAME</span><span class="s2">.htb&quot;</span>
+<span class="nb">local</span> <span class="nv">IP</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$IP</span><span class="s2">&quot;</span>
+<span class="nb">local</span> <span class="nv">LINE</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$IP</span><span class="s2">\t</span><span class="nv">$HOSTNAME</span><span class="s2">&quot;</span>
+<span class="k">if</span> <span class="o">[</span> -n <span class="s2">&quot;</span><span class="k">$(</span>grep <span class="nv">$HOSTNAME</span> <span class="nv">$HOSTSFILE</span><span class="k">)</span><span class="s2">&quot;</span> <span class="o">]</span>
+<span class="k">then</span>
+<span class="nb">printf</span> <span class="s1">&#39;%s\n&#39;</span> <span class="s2">&quot;[!] </span><span class="nv">$HOSTNAME</span><span class="s2"> ya existe en </span><span class="nv">$HOSTSFILE</span><span class="s2"> : </span><span class="k">$(</span>grep <span class="nv">$HOSTNAME</span> <span class="nv">$HOSTSFILE</span><span class="k">)</span><span class="s2">&quot;</span>
+<span class="k">else</span>
+sh -c -e <span class="s2">&quot;echo &#39;</span><span class="nv">$LINE</span><span class="s2">&#39; &gt;&gt; </span><span class="nv">$HOSTSFILE</span><span class="s2">&quot;</span><span class="p">;</span>
+        <span class="k">if</span> <span class="o">[</span> -n <span class="s2">&quot;</span><span class="k">$(</span>grep <span class="nv">$HOSTNAME</span> <span class="nv">$HOSTSFILE</span><span class="k">)</span><span class="s2">&quot;</span> <span class="o">]</span>
+        <span class="k">then</span>
         :
-        else
-        printf '%s\n' &quot;[+] Error al agregar $HOSTNAME, prueba de nuevo!&quot;;
-        fi
-fi
-}
+        <span class="k">else</span>
+        <span class="nb">printf</span> <span class="s1">&#39;%s\n&#39;</span> <span class="s2">&quot;[+] Error al agregar </span><span class="nv">$HOSTNAME</span><span class="s2">, prueba de nuevo!&quot;</span><span class="p">;</span>
+        <span class="k">fi</span>
+<span class="k">fi</span>
+<span class="o">}</span>
 
-scan(){
-/usr/bin/nmap -p- -sS --min-rate 5000 --open -vvv -n -Pn -oG $TMPFILE $IP
-local PORTS=$(/bin/cat $TMPFILE |grep -oP '\d{1,5}/open' |awk '{print $1}' FS='/' | xargs | tr ' ' ',')
-/usr/bin/nmap -sC -sV -p$PORTS -oN $FOLDER/nmap.txt $IP
-}
+scan<span class="o">(){</span>
+/usr/bin/nmap -p- -sS --min-rate <span class="m">5000</span> --open -vvv -n -Pn -oG <span class="nv">$TMPFILE</span> <span class="nv">$IP</span>
+<span class="nb">local</span> <span class="nv">PORTS</span><span class="o">=</span><span class="k">$(</span>/bin/cat <span class="nv">$TMPFILE</span> <span class="p">|</span>grep -oP <span class="s1">&#39;\d{1,5}/open&#39;</span> <span class="p">|</span>awk <span class="s1">&#39;{print $1}&#39;</span> <span class="nv">FS</span><span class="o">=</span><span class="s1">&#39;/&#39;</span> <span class="p">|</span> xargs <span class="p">|</span> tr <span class="s1">&#39; &#39;</span> <span class="s1">&#39;,&#39;</span><span class="k">)</span>
+/usr/bin/nmap -sC -sV -p<span class="nv">$PORTS</span> -oN <span class="nv">$FOLDER</span>/nmap.txt <span class="nv">$IP</span>
+<span class="o">}</span>
 
-webinfo(){
-local OUTPUT=&quot;$FOLDER/webinfo.txt&quot;
-if cat $TMPFILE |grep -oP '\d{1,5}/open' |awk '{print $1}' FS='/' |grep -w '80'; then
-    whatweb http://$NAME.htb &gt;&gt; $OUTPUT
-    echo &quot;&quot; &gt;&gt; $OUTPUT
-    curl -s -I -X GET http://$NAME.htb &gt;&gt; $OUTPUT
-elif cat $TMPFILE |grep -oP '\d{1,5}/open' |awk '{print $1}' FS='/' |grep -w '443'; then
-    whatweb https://$NAME.htb &gt;&gt; $OUTPUT
-    echo &quot;&quot; &gt;&gt; $OUTPUT
-    curl -s -k -I -X GET https://$NAME.htb &gt;&gt; $OUTPUT
-fi
-}
+webinfo<span class="o">(){</span>
+<span class="nb">local</span> <span class="nv">OUTPUT</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$FOLDER</span><span class="s2">/webinfo.txt&quot;</span>
+<span class="k">if</span> cat <span class="nv">$TMPFILE</span> <span class="p">|</span>grep -oP <span class="s1">&#39;\d{1,5}/open&#39;</span> <span class="p">|</span>awk <span class="s1">&#39;{print $1}&#39;</span> <span class="nv">FS</span><span class="o">=</span><span class="s1">&#39;/&#39;</span> <span class="p">|</span>grep -w <span class="s1">&#39;80&#39;</span><span class="p">;</span> <span class="k">then</span>
+    whatweb http://<span class="nv">$NAME</span>.htb &gt;&gt; <span class="nv">$OUTPUT</span>
+    <span class="nb">echo</span> <span class="s2">&quot;&quot;</span> &gt;&gt; <span class="nv">$OUTPUT</span>
+    curl -s -I -X GET http://<span class="nv">$NAME</span>.htb &gt;&gt; <span class="nv">$OUTPUT</span>
+<span class="k">elif</span> cat <span class="nv">$TMPFILE</span> <span class="p">|</span>grep -oP <span class="s1">&#39;\d{1,5}/open&#39;</span> <span class="p">|</span>awk <span class="s1">&#39;{print $1}&#39;</span> <span class="nv">FS</span><span class="o">=</span><span class="s1">&#39;/&#39;</span> <span class="p">|</span>grep -w <span class="s1">&#39;443&#39;</span><span class="p">;</span> <span class="k">then</span>
+    whatweb https://<span class="nv">$NAME</span>.htb &gt;&gt; <span class="nv">$OUTPUT</span>
+    <span class="nb">echo</span> <span class="s2">&quot;&quot;</span> &gt;&gt; <span class="nv">$OUTPUT</span>
+    curl -s -k -I -X GET https://<span class="nv">$NAME</span>.htb &gt;&gt; <span class="nv">$OUTPUT</span>
+<span class="k">fi</span>
+<span class="o">}</span>
 
-#RunAway
+<span class="c1">#RunAway</span>
 checkvpn
 checkping
 createfolder
 addhost
 scan
 webinfo
-
-</code></pre>
+</code></pre></div>
 
 
 </section>
