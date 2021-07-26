@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>HTBenum - HackTheBox</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="generator" content="mkdocs-1.2.2, mkdocs-gitbook-1.0.7">
+
+<link rel="shortcut icon" href="../../images/favicon.ico" type="image/x-icon">
+<meta name="HandheldFriendly" content="true"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta rel="next" href="" />
+<link href="../../css/style.min.css" rel="stylesheet"> 
+</head>
+
+<body>
+<div class="book">
+<div class="book-summary">
+<div id="book-search-input" role="search">
+<input type="text" placeholder="Type to search" />
+</div> <!-- end of book-search-input -->
+
+<nav role="navigation">
+<ul class="summary">
+<li>
+<a href="../.." target="_blank" class="custom-link">HackTheBox</a>
+</li>
+<li class="divider"></li>
+<li class="chapter" data-path="">
+<a href="../..">Home</a>
+<li class="header">Tools</li>
+
+<li>
+<a href="./" class="active">HTBenum</a>
+</li>
+
+<li class="divider"></li>
+
+
+
+<li><a href="http://www.mkdocs.org">
+Published with MkDocs
+</a></li>
+
+<li><a href="https://github.com/GitbookIO/theme-default">
+Theme by GitBook
+</a></li>
+</ul>
+
+</nav>
+
+</div> <!-- end of book-summary -->
+
+<div class="book-body">
+<div class="body-inner">
+<div class="book-header" role="navigation">
+
+<!-- Title -->
+<h1>
+<i class="fa fa-circle-o-notch fa-spin"></i>
+<a href="." ></a>
+</h1>
+
+</div> <!-- end of book-header -->
+
+<div class="page-wrapper" tabindex="-1" role="main">
+<div class="page-inner">
+<div id="book-search-results">
+<div class="search-noresults">
+
+<section class="normal markdown-section">
+
+
+
+<h1 id="hackthebox-enumeration-script">HackTheBox Enumeration Script</h1>
+<p>Esta herrramienta nos servira para realizar una primera enumeracion basica a una maquina de Hack The Box. Las funciones que realiza son las siguientes:</p>
+<ul>
+<li>Chequea que la VPN esta activada</li>
+<li>Chequea que podemos hacer ping a nuestra maquina objetivo</li>
+<li>Crea el directorio de trabajo</li>
+<li>Inserta el nombredelamaquina.htb y su ip en nuestro /etc/hosts</li>
+<li>Realiza un escaneo con nmap</li>
+<li>Si detecta que existe un puerto 80 o 443 lanza un whatweb y un curl para extraer las cabeceras HTTP</li>
+</ul>
+<pre><code>#!/bin/bash
+# HTB LoRKa Script
+
+command -v nmap &gt;/dev/null 2&gt;&amp;1 || { echo -e &gt;&amp;2 &quot;[\e[1;31m!\e[0m] You need \e[1;32mnmap\e[0m , please install it.&quot;; exit 1; }
+command -v whatweb &gt;/dev/null 2&gt;&amp;1 || { echo -e &gt;&amp;2 &quot;[\e[1;31m!\e[0m] You need \e[1;32mwhatweb\e[0m , please install it.&quot;; exit 1; }
+command -v curl &gt;/dev/null 2&gt;&amp;1 || { echo -e &gt;&amp;2 &quot;[\e[1;31m!\e[0m] You need \e[1;32mcurl\e[0m , please install it.&quot;; exit 1; }
+
+if [ &quot;$#&quot; -ne &quot;2&quot; ] || [ &quot;$#&quot; -gt &quot;2&quot; ] ; then
+echo &quot;[+] Use: $(basename $0) machineNAME machineIP&quot;
+echo &quot;[+] Exp: $(basename $0) Armageddon 10.10.10.233&quot;
+exit -1
+fi
+
+trap '/bin/rm -rf &quot;$TMPFILE&quot;' EXIT
+
+#Vars
+NAME=&quot;$1&quot;
+IP=&quot;$2&quot;
+TMPFILE=$(mktemp)
+FOLDER=&quot;/root/Machines/$NAME&quot;
+
+
+#Functions
+checkvpn(){
+ip -4 a show tun0 1&gt;/dev/null 2&gt;/dev/null
+if [ $? -ne 0 ];then
+printf '%s\n' &quot;[!] ERROR: la VPN no esta conectada :(&quot;
+exit -1
+fi
+}
+
+checkping(){
+timeout 0.3 ping -c1 $IP 1&gt;/dev/null 2&gt;/dev/null
+if [ $? -ne 0 ];then
+printf '%s\n' &quot;[!] ERROR: la ip $IP no contesta a ping :(&quot;
+exit -1
+fi
+}
+
+createfolder(){
+if [ -d &quot;$FOLDER&quot; ]; then
+printf '%s\n' &quot;[!] Cuidado! el directorio $FOLDER existe!&quot;
+exit 1
+fi
+mkdir -p $FOLDER
+}
+
+
+addhost(){
+local HOSTSFILE=&quot;/etc/hosts&quot;
+local HOSTNAME=&quot;$NAME.htb&quot;
+local IP=&quot;$IP&quot;
+local LINE=&quot;$IP\t$HOSTNAME&quot;
+if [ -n &quot;$(grep $HOSTNAME $HOSTSFILE)&quot; ]
+then
+printf '%s\n' &quot;[!] $HOSTNAME ya existe en $HOSTSFILE : $(grep $HOSTNAME $HOSTSFILE)&quot;
+else
+sh -c -e &quot;echo '$LINE' &gt;&gt; $HOSTSFILE&quot;;
+        if [ -n &quot;$(grep $HOSTNAME $HOSTSFILE)&quot; ]
+        then
+        :
+        else
+        printf '%s\n' &quot;[+] Error al agregar $HOSTNAME, prueba de nuevo!&quot;;
+        fi
+fi
+}
+
+scan(){
+/usr/bin/nmap -p- -sS --min-rate 5000 --open -vvv -n -Pn -oG $TMPFILE $IP
+local PORTS=$(/bin/cat $TMPFILE |grep -oP '\d{1,5}/open' |awk '{print $1}' FS='/' | xargs | tr ' ' ',')
+/usr/bin/nmap -sC -sV -p$PORTS -oN $FOLDER/nmap.txt $IP
+}
+
+webinfo(){
+local OUTPUT=&quot;$FOLDER/webinfo.txt&quot;
+if cat $TMPFILE |grep -oP '\d{1,5}/open' |awk '{print $1}' FS='/' |grep -w '80'; then
+    whatweb http://$NAME.htb &gt;&gt; $OUTPUT
+    echo &quot;&quot; &gt;&gt; $OUTPUT
+    curl -s -I -X GET http://$NAME.htb &gt;&gt; $OUTPUT
+elif cat $TMPFILE |grep -oP '\d{1,5}/open' |awk '{print $1}' FS='/' |grep -w '443'; then
+    whatweb https://$NAME.htb &gt;&gt; $OUTPUT
+    echo &quot;&quot; &gt;&gt; $OUTPUT
+    curl -s -k -I -X GET https://$NAME.htb &gt;&gt; $OUTPUT
+fi
+}
+
+#RunAway
+checkvpn
+checkping
+createfolder
+addhost
+scan
+webinfo
+
+</code></pre>
+
+
+</section>
+</div> <!-- end of search-noresults -->
+<div class="search-results">
+<div class="has-results">
+
+<h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+<ul class="search-results-list"></ul>
+
+</div> <!-- end of has-results -->
+<div class="no-results">
+
+<h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+
+</div> <!-- end of no-results -->
+</div> <!-- end of search-results -->
+</div> <!-- end of book-search-results -->
+
+</div> <!-- end of page-inner -->
+</div> <!-- end of page-wrapper -->
+
+</div> <!-- end of body-inner -->
+
+</div> <!-- end of book-body -->
+<script src="../../js/main.js"></script>
+<script src="../../search/main.js"></script>
+<script src="../../js/gitbook.min.js"></script>
+<script src="../../js/theme.min.js"></script>
+</body>
+</html>
