@@ -269,12 +269,12 @@
                 <h1 id="hackthebox-enumeration-script">HackTheBox Enumeration Script</h1>
 <p>Esta herrramienta nos servira para realizar una primera enumeracion basica a una maquina de Hack The Box. Las funciones que realiza son las siguientes:</p>
 <ul>
-<li>Chequea que la VPN esta activada</li>
-<li>Chequea que podemos hacer ping a nuestra maquina objetivo</li>
-<li>Crea el directorio de trabajo</li>
-<li>Inserta el nombredelamaquina.htb y su ip en nuestro /etc/hosts</li>
-<li>Realiza un escaneo con nmap</li>
-<li>Si detecta que existe un puerto 80 o 443 lanza un whatweb y un curl para extraer las cabeceras HTTP</li>
+<li><code>checkvpn</code>     Chequea que la VPN esta activada</li>
+<li><code>checkping</code>    Chequea que podemos hacer ping a nuestra maquina objetivo</li>
+<li><code>createfolder</code> Crea el directorio de trabajo</li>
+<li><code>addhost</code>      Inserta el nombredelamaquina.htb y su ip en nuestro /etc/hosts</li>
+<li><code>scan</code>         Realiza un escaneo con nmap</li>
+<li><code>webinfo</code>      Si detecta que existe un puerto 80 o 443 lanza un whatweb y un curl para extraer las cabeceras HTTP</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 <span class="c1"># HTB LoRKa Script</span>
