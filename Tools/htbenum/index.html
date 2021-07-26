@@ -86,7 +86,7 @@ Theme by GitBook
 <li>Realiza un escaneo con nmap</li>
 <li>Si detecta que existe un puerto 80 o 443 lanza un whatweb y un curl para extraer las cabeceras HTTP</li>
 </ul>
-<pre><code>#!/bin/bash
+<pre><code class="language-bash">#!/bin/bash
 # HTB LoRKa Script
 
 command -v nmap &gt;/dev/null 2&gt;&amp;1 || { echo -e &gt;&amp;2 &quot;[\e[1;31m!\e[0m] You need \e[1;32mnmap\e[0m , please install it.&quot;; exit 1; }
