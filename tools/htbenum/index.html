@@ -488,7 +488,7 @@
 <p><a href="../HTBenum.sh"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M3 3a2 2 0 0 1 2-2h9.982a2 2 0 0 1 1.414.586l4.018 4.018A2 2 0 0 1 21 7.018V21a2 2 0 0 1-2 2H4.75a.75.75 0 0 1 0-1.5H19a.5.5 0 0 0 .5-.5V8.5h-4a2 2 0 0 1-2-2v-4H5a.5.5 0 0 0-.5.5v6.25a.75.75 0 0 1-1.5 0V3zm12-.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 0-.146-.336l-4.018-4.018A.5.5 0 0 0 15 2.5z"/><path d="M4.53 12.24a.75.75 0 0 1-.039 1.06l-2.639 2.45 2.64 2.45a.75.75 0 1 1-1.022 1.1l-3.23-3a.75.75 0 0 1 0-1.1l3.23-3a.75.75 0 0 1 1.06.04zm3.979 1.06a.75.75 0 1 1 1.02-1.1l3.231 3a.75.75 0 0 1 0 1.1l-3.23 3a.75.75 0 1 1-1.021-1.1l2.639-2.45-2.64-2.45z"/></svg></span> HTBenum.sh</a> </p>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 <span class="c1"># HTB Enumeration Script</span>
-<span class="c1"># LoRKa .-</span>
+<span class="c1"># LoRKa</span>
 
 <span class="nb">command</span> -v nmap &gt;/dev/null <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="o">||</span> <span class="o">{</span> <span class="nb">echo</span> -e &gt;<span class="p">&amp;</span><span class="m">2</span> <span class="s2">&quot;[\e[1;31m!\e[0m] You need \e[1;32mnmap\e[0m , please install it.&quot;</span><span class="p">;</span> <span class="nb">exit</span> <span class="m">1</span><span class="p">;</span> <span class="o">}</span>
 <span class="nb">command</span> -v whatweb &gt;/dev/null <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="o">||</span> <span class="o">{</span> <span class="nb">echo</span> -e &gt;<span class="p">&amp;</span><span class="m">2</span> <span class="s2">&quot;[\e[1;31m!\e[0m] You need \e[1;32mwhatweb\e[0m , please install it.&quot;</span><span class="p">;</span> <span class="nb">exit</span> <span class="m">1</span><span class="p">;</span> <span class="o">}</span>
@@ -506,7 +506,7 @@
 <span class="nv">NAME</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span>
 <span class="nv">IP</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$2</span><span class="s2">&quot;</span>
 <span class="nv">TMPFILE</span><span class="o">=</span><span class="k">$(</span>mktemp<span class="k">)</span>
-<span class="nv">FOLDER</span><span class="o">=</span><span class="s2">&quot;/root/Machines/</span><span class="nv">$NAME</span><span class="s2">&quot;</span>
+<span class="nv">FOLDER</span><span class="o">=</span><span class="s2">&quot;/hackthebox/</span><span class="nv">$NAME</span><span class="s2">&quot;</span>
 
 
 <span class="c1">#Functions</span>
@@ -529,7 +529,7 @@ timeout <span class="m">0</span>.3 ping -c1 <span class="nv">$IP</span> <span cl
 createfolder<span class="o">(){</span>
 <span class="k">if</span> <span class="o">[</span> -d <span class="s2">&quot;</span><span class="nv">$FOLDER</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
 <span class="nb">printf</span> <span class="s1">&#39;%s\n&#39;</span> <span class="s2">&quot;[!] Cuidado! el directorio </span><span class="nv">$FOLDER</span><span class="s2"> existe!&quot;</span>
-<span class="nb">exit</span> <span class="m">1</span>
+<span class="nb">exit</span> -1
 <span class="k">fi</span>
 mkdir -p <span class="nv">$FOLDER</span>
 <span class="o">}</span>

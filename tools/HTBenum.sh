@@ -1,5 +1,6 @@
 #!/bin/bash
-# HTB LoRKa Script
+# HTB Enumeration Script
+# LoRKa
 
 command -v nmap >/dev/null 2>&1 || { echo -e >&2 "[\e[1;31m!\e[0m] You need \e[1;32mnmap\e[0m , please install it."; exit 1; }
 command -v whatweb >/dev/null 2>&1 || { echo -e >&2 "[\e[1;31m!\e[0m] You need \e[1;32mwhatweb\e[0m , please install it."; exit 1; }
