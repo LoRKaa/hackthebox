@@ -40,7 +40,7 @@ fi
 createfolder(){
 if [ -d "$FOLDER" ]; then
 printf '%s\n' "[!] Cuidado! el directorio $FOLDER existe!"
-exit 1
+exit -1
 fi
 mkdir -p $FOLDER
 }
